@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>nelf.in</title><link href="http://nelf.in/" rel="alternate"></link><link href="http://nelf.in/feeds/misc.atom.xml" rel="self"></link><id>http://nelf.in/</id><updated>2014-12-14T16:47:00+11:00</updated><entry><title>Hello World</title><link href="http://nelf.in/hello-world.html" rel="alternate"></link><updated>2014-12-14T16:47:00+11:00</updated><author><name>Andrew Haigh</name></author><id>tag:nelf.in,2014-12-14:hello-world.html</id><summary type="html">&lt;p&gt;Built in an afternoon with pelican, taking advantage of GitHub pages backing
+<feed xmlns="http://www.w3.org/2005/Atom"><title>nelf.in</title><link href="http://nelf.in/" rel="alternate"></link><link href="http://nelf.in/feeds/misc.atom.xml" rel="self"></link><id>http://nelf.in/</id><updated>2014-12-14T17:54:00+11:00</updated><entry><title>Hello World</title><link href="http://nelf.in/hello-world.html" rel="alternate"></link><updated>2014-12-14T17:54:00+11:00</updated><author><name>Andrew Haigh</name></author><id>tag:nelf.in,2014-12-14:hello-world.html</id><summary type="html">&lt;p&gt;Built in an afternoon with pelican, taking advantage of GitHub pages backing
 onto Fastly. Who has the time to set up a CDN?&lt;/p&gt;
 &lt;p&gt;Running a small pre-push hook courtesy of &lt;a class="reference internal" href="#getting-clojure"&gt;Getting Clojure&lt;/a&gt;, with some minor
 additions to ensure sensible messages each time:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
-&lt;span class="nv"&gt;lastcommit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;git log origin/master..HEAD --oneline&lt;span class="sb"&gt;`&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$lastcommit&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; wc -l&lt;span class="k"&gt;)&lt;/span&gt; -gt &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;then&lt;/span&gt;
-    &lt;span class="nv"&gt;message&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;`git log -1 --oneline`\n\n`git log origin/master..HEAD^ --oneline`&amp;quot;&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;
-    &lt;span class="nv"&gt;message&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;git log -1 --oneline&lt;span class="sb"&gt;`&lt;/span&gt;
-&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="nv"&gt;head&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Update to latest&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;git log origin/master..HEAD --oneline&lt;span class="sb"&gt;`&lt;/span&gt;
 make publish
-&lt;span class="nb"&gt;cd &lt;/span&gt;output &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; git add -A &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; git commit -m &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$message&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push origin master
-&lt;span class="nb"&gt;exit &lt;/span&gt;0
+&lt;span class="nb"&gt;cd &lt;/span&gt;output &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; git add -A &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; git commit -m &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$head&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; -m &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$body&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; git push origin master
 &lt;/pre&gt;&lt;/div&gt;
 &lt;!--  --&gt;
 &lt;p&gt;&lt;span class="target" id="getting-clojure"&gt;Getting Clojure&lt;/span&gt;: &lt;a class="reference external" href="http://mavant.com/blog/2014/03/10/pelican-git-hooks-github-dot-io/"&gt;http://mavant.com/blog/2014/03/10/pelican-git-hooks-github-dot-io/&lt;/a&gt;&lt;/p&gt;

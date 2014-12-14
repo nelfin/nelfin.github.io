@@ -50,16 +50,10 @@ onto Fastly. Who has the time to set up a CDN?</p>
 <p>Running a small pre-push hook courtesy of <a class="reference internal" href="#getting-clojure">Getting Clojure</a>, with some minor
 additions to ensure sensible messages each time:</p>
 <div class="highlight"><pre><span class="c">#!/bin/bash</span>
-<span class="nv">lastcommit</span><span class="o">=</span><span class="sb">`</span>git log origin/master..HEAD --oneline<span class="sb">`</span>
-<span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$lastcommit</span> <span class="p">|</span> wc -l<span class="k">)</span> -gt <span class="m">1</span> <span class="o">]</span><span class="p">;</span>
-<span class="k">then</span>
-    <span class="nv">message</span><span class="o">=</span><span class="s2">&quot;`git log -1 --oneline`\n\n`git log origin/master..HEAD^ --oneline`&quot;</span>
-<span class="k">else</span>
-    <span class="nv">message</span><span class="o">=</span><span class="sb">`</span>git log -1 --oneline<span class="sb">`</span>
-<span class="k">fi</span>
+<span class="nv">head</span><span class="o">=</span><span class="s2">&quot;Update to latest&quot;</span>
+<span class="nv">body</span><span class="o">=</span><span class="sb">`</span>git log origin/master..HEAD --oneline<span class="sb">`</span>
 make publish
-<span class="nb">cd </span>output <span class="o">&amp;&amp;</span> git add -A <span class="o">&amp;&amp;</span> git commit -m <span class="s2">&quot;</span><span class="nv">$message</span><span class="s2">&quot;</span> <span class="o">&amp;&amp;</span> git push origin master
-<span class="nb">exit </span>0
+<span class="nb">cd </span>output <span class="o">&amp;&amp;</span> git add -A <span class="o">&amp;&amp;</span> git commit -m <span class="s2">&quot;</span><span class="nv">$head</span><span class="s2">&quot;</span> -m <span class="s2">&quot;</span><span class="nv">$body</span><span class="s2">&quot;</span> <span class="o">&amp;&amp;</span> git push origin master
 </pre></div>
 <!--  -->
 <p><span class="target" id="getting-clojure">Getting Clojure</span>: <a class="reference external" href="http://mavant.com/blog/2014/03/10/pelican-git-hooks-github-dot-io/">http://mavant.com/blog/2014/03/10/pelican-git-hooks-github-dot-io/</a></p>
