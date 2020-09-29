@@ -47,4 +47,17 @@ dt {
 	margin-top: 1rem;
 	font-style: italic;
 }
-
+pre, code, kbd {
+	font-family: 'Ubuntu Mono', monospace;
+}
+code, kbd {
+	font-size-adjust: 0.48;
+}
+pre {
+	background: #333;
+	color: greenyellow;
+	font-size: 70%;
+	padding: 4px;
+	border-radius: 4px;
+	overflow-x: scroll;
+}

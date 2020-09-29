@@ -25,10 +25,57 @@
 <dl>
 
 <dt><a href="https://github.com/nelfin/toggle-comment">toggle-comment</a></dt>
-<dd>A utility to set or toggle the comment status of lines.</dd>
+<dd>
+Like <code>sed</code> but worse! A specialised utility for command-line workflows that may
+involve ensuring that certain lines are commented out, or flipping the status of a block
+of code programmatically (as <kbd>Ctrl+/</kbd> in your editor would). Install via
+<code>cargo install toggle-comment</code>.
+
+<pre>
+toggle-comment 0.5.0
+A utility for setting or toggling the line-comment status of lines in text files
+
+USAGE:
+    toggle-comment [OPTIONS] &lt;PATTERN&gt; [INPUT]
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+OPTIONS:
+        --mode &lt;comment|toggle|uncomment&gt;    Commenting behaviour [default: toggle]
+    -c, --comment-prefix &lt;PREFIX&gt;            Line comment prefix string [default: "# "]
+
+ARGS:
+    &lt;PATTERN&gt;    ed-like address pattern for selecting lines.
+    &lt;INPUT&gt;      Sets the input file.
+</pre>
+</dd>
 
 <dt><a href="https://github.com/nelfin/pylint-protobuf">pylint-protobuf</a></dt>
-<dd>A plugin for the pylint linter to check Protobuf-generated message usage.</dd>
+<dd>
+A plugin for the pylint linter to check Protobuf-generated message usage. Needlessly
+complicated and hopelessly under-featured. Install via <code>pip install pylint-protobuf</code>.
+
+<pre>
+$ cat &lt;&lt;EOF &gt;example.proto
+message Thing {
+	required string value = 1;
+}
+EOF
+$ protoc person.proto --python_out=.
+$ cat &lt;&lt;EOF &gt;example.py
+from example_pb2 import Thing
+a = Thing()
+a.invalid_field = 123
+EOF
+$ pylint --load-plugins=pylint_protobuf example.py
+************* Module example
+E:  4, 0: Field 'invalid_field' does not appear in the declared fields of
+protobuf-generated class 'Thing' and will raise AttributeError on access
+(protobuf-undefined-attribute)
+</pre>
+</dd>
 
 <dt><a href="https://github.com/nelfin/upower-stats">upower-stats</a></dt>
 <dd>Convenience Python wrapper for battery charging and usage history.</dd>
